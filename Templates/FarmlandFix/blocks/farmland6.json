@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_farmland",
+  "textures": {
+    "dirt": "minecraft:not_supported",
+    "top": "minecraft:not_supported"
+  }
+}

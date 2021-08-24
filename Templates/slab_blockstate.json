@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "minecraft:block/{!}_bottom"
+    },
+    "type=double": {
+      "model": "minecraft:block/{!}_double"
+    },
+    "type=top": {
+      "model": "minecraft:block/{!}_top"
+    }
+  }
+}
