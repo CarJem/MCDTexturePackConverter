@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MCDTexturePackConverter.Classes
 {
-    public class BlockMap_Base
+    public class Logic_BlockMap
     {
         public Dictionary<string, JToken> definitions { get; set; }
     }

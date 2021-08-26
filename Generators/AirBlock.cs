@@ -10,18 +10,16 @@ namespace MCDTexturePackConverter.Generators
 {
     public static class AirBlock
     {
-        public static void Generate(string javaName, string dungeonsName, DungeonsRP_Blocks.Definition definition, BlockMapData conversionDataList)
+        public static void Generate(string javaName, string modelName, DungeonsRP_Blocks.Definition definition, Logic_BlockMapData conversionDataList)
         {
-            JavaRP_BlockState state = new JavaRP_BlockState();
             JObject props = new JObject();
             string shortenedName = javaName.Remove("minecraft:");
-            props.Add("model", ModelAssembler.BlockPrefix + shortenedName);
-            state.variants.Add("", props);
+            props.Add("model", Assembler.BlockPrefix + shortenedName);
 
             JavaRP_BlockModel model = new JavaRP_BlockModel();
 
-            ModelAssembler.BlockStates.Add(shortenedName, state);
-            ModelAssembler.BlockModels.Add(shortenedName, model);
+            Assembler.AddStateToBlockStates(shortenedName, "", props);
+            Assembler.AddBlockModel(shortenedName, model);
         }
     }
 }

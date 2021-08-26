@@ -12,37 +12,37 @@ namespace MCDTexturePackConverter.Generators
 {
     public static class Wall
     {
-        public static void Generate(string javaName, string dungeonsName, DungeonsRP_Blocks.Definition definition, BlockMapData conversionDataList)
+        public static void Generate(string javaName, string modelName, DungeonsRP_Blocks.Definition definition, Logic_BlockMapData conversionDataList)
         {
-            string shortenedName = javaName.Remove("minecraft:");
-
-            string statePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates", "wall_blockstate.json");
+            string statePath = Assembler.GetTemplatePath("wall", "wall_blockstate.json");
             string json = File.ReadAllText(statePath);
-            string edited_json = json.Replace("{!}", shortenedName);
+            string edited_json = json.Replace("{!}", modelName);
             JavaRP_BlockState state = JsonConvert.DeserializeObject<JavaRP_BlockState>(edited_json);
 
-            string all = ModelGenerator.ReducePath(StoredResources.BlockTextureDataToBlockPath(definition.Textures.All, conversionDataList.DungeonsData));
+            string all = Assembler.GetBlockTexture(definition.Textures.All, conversionDataList.DungeonsData);
 
-            string modelPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates", "wall_post_model.json");
+            string modelPath = Assembler.GetTemplatePath("wall", "wall_post_model.json");
             string json2 = File.ReadAllText(modelPath);
             string edited_json2 = json2.Replace("{!}", all);
             JavaRP_BlockModel model = JsonConvert.DeserializeObject<JavaRP_BlockModel>(edited_json2);
 
-            string modelPath2 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates", "wall_side_model.json");
+            string modelPath2 = Assembler.GetTemplatePath("wall", "wall_side_model.json");
             string json3 = File.ReadAllText(modelPath2);
             string edited_json3 = json3.Replace("{!}", all);
             JavaRP_BlockModel model2 = JsonConvert.DeserializeObject<JavaRP_BlockModel>(edited_json3);
 
-            string modelPath3 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates", "wall_side_tall_model.json");
+            string modelPath3 = Assembler.GetTemplatePath("wall", "wall_side_tall_model.json");
             string json4 = File.ReadAllText(modelPath3);
             string edited_json4 = json4.Replace("{!}", all);
             JavaRP_BlockModel model3 = JsonConvert.DeserializeObject<JavaRP_BlockModel>(edited_json4);
 
-            ModelAssembler.BlockStates.Add(shortenedName, state);
+            foreach (var entry in state.variants) Assembler.AddStateToBlockStates(Assembler.GetBlockName(javaName), entry.Key, entry.Value);
+            foreach (var entry in state.multipart) Assembler.AddMultipartToBlockStates(Assembler.GetBlockName(javaName), entry);
 
-            ModelAssembler.BlockModels.Add(shortenedName + "_post", model);
-            ModelAssembler.BlockModels.Add(shortenedName + "_side", model2);
-            ModelAssembler.BlockModels.Add(shortenedName + "_side_tall", model3);
+
+            Assembler.AddBlockModel(modelName + "_post", model);
+            Assembler.AddBlockModel(modelName + "_side", model2);
+            Assembler.AddBlockModel(modelName + "_side_tall", model3);
         }
     }
 }

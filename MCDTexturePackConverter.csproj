@@ -1,14 +1,19 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <ApplicationIcon />
+    <StartupObject />
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="Resources\**" />
+    <Compile Remove="Templates\NoteblockFix\**" />
     <EmbeddedResource Remove="Resources\**" />
+    <EmbeddedResource Remove="Templates\NoteblockFix\**" />
     <None Remove="Resources\**" />
+    <None Remove="Templates\NoteblockFix\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,14 +27,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FolderBrowserEx" Version="1.0.1" />
+    <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="8.2.1" />
+    <PackageReference Include="Magick.NET.Core" Version="8.2.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="BlockList_Names.json">
+    <None Update="BlockPairs.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="BlockList.json">
+    <None Update="BlockMap.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Templates\FarmlandFix\blockstates\farmland.json">
@@ -59,70 +67,96 @@
     <None Update="Templates\FarmlandFix\blocks\farmland_moist.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Templates\farmland_blockstate.json">
+    <None Update="Templates\fix\farmland1_model.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Templates\farmland_model.json">
+    <None Update="Templates\fix\farmland2_model.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Templates\fence_blockstate.json">
+    <None Update="Templates\fix\farmland3_model.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Templates\fence_post_model.json">
+    <None Update="Templates\fix\farmland4_model.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Templates\fence_side_model.json">
+    <None Update="Templates\fix\farmland5_model.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Templates\log_blockstate.json">
+    <None Update="Templates\fix\farmland6_model.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Templates\log_horizontal_model.json">
+    <None Update="Templates\fix\farmland_blockstate.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Templates\log_model.json">
+    <None Update="Templates\fix\farmland_model.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Templates\slab_blockstate.json">
+    <None Update="Templates\fix\farmland_moist_model.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Templates\slab_double_model.json">
+    <None Update="Templates\leaves\leaves_blockstate.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Templates\slab_bottom_model.json">
+    <None Update="Templates\fence\fence_blockstate.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Templates\slab_top_model.json">
+    <None Update="Templates\fence\fence_post_model.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Templates\stairs_inner_model.json">
+    <None Update="Templates\fence\fence_side_model.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Templates\stairs_model.json">
+    <None Update="Templates\fix\leaves_model.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Templates\stairs_outer_model.json">
+    <None Update="Templates\leaves\leaves_model.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Templates\stair_blockstate.json">
+    <None Update="Templates\tree\log_blockstate.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Templates\wall_blockstate.json">
+    <None Update="Templates\tree\log_horizontal_model.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Templates\wall_post_model.json">
+    <None Update="Templates\tree\log_model.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Templates\wall_side_model.json">
+    <None Update="Templates\slab\slab_blockstate.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Templates\wall_side_tall_model.json">
+    <None Update="Templates\slab\slab_double_model.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Templates\NoteblockFix\" />
+    <None Update="Templates\slab\slab_bottom_model.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\slab\slab_top_model.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\stairs\stairs_inner_model.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\stairs\stairs_model.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\stairs\stairs_outer_model.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\stairs\stairs_blockstate.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\wall\wall_blockstate.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\wall\wall_post_model.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\wall\wall_side_model.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\wall\wall_side_tall_model.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

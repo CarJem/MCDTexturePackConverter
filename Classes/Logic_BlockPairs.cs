@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MCDTexturePackConverter.Classes
 {
-    public class BlockNames_Base
+    public class Logic_BlockPairs
     {
         public Dictionary<int, string> pairs { get; set; }
 
