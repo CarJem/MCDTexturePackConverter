@@ -19,9 +19,9 @@ namespace MCDTexturePackConverter.Generators
             string edited_json = json.Replace("{!}", modelName);
             JavaRP_BlockState state = JsonConvert.DeserializeObject<JavaRP_BlockState>(edited_json);
 
-            string up = Assembler.GetBlockTexture(definition.Textures.All, conversionDataList.DungeonsData);
-            string down = Assembler.GetBlockTexture(definition.Textures.All, conversionDataList.DungeonsData);
-            string side = Assembler.GetBlockTexture(definition.Textures.All, conversionDataList.DungeonsData);
+            string up = Assembler.GetBlockTexture(definition.Textures.Up, conversionDataList.DungeonsData);
+            string down = Assembler.GetBlockTexture(definition.Textures.Down, conversionDataList.DungeonsData);
+            string side = Assembler.GetBlockTexture(definition.Textures.Side, conversionDataList.DungeonsData);
 
 
             CreateModel(modelName, Assembler.GetTemplatePath("cactus", "cactus_model.json"), "", up, down, side);
