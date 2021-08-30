@@ -18,8 +18,12 @@ namespace MCDTexturePackConverter
     {
 
         public const string VERSION = "0.1";
-        private const string DefaultInputDir = @"D:\UserData\Modding Workspaces\MC Dungeons Modding\Game Dumps\Current\Dungeons\Content\data\resourcepacks\squidcoast";
-        public const string DefaultOutputDir = @"D:\UserData\Saved Games\MultiMC\instances\Minecraft Dungeons Development\.minecraft\resourcepacks\DungeonsConvertedPack";
+
+        //private const string DefaultInputDir = @"D:\UserData\Modding Workspaces\MC Dungeons Modding\Game Dumps\Current\Dungeons\Content\data\resourcepacks\squidcoast";
+        //public const string DefaultOutputDir = @"D:\UserData\Saved Games\MultiMC\instances\Minecraft Dungeons Development\.minecraft\resourcepacks\DungeonsConvertedPack";
+
+        private const string DefaultInputDir = @"D:\UserData\Modding Workspaces\MC Dungeons Modding\Game Dumps\Current\Dungeons\Content\data\resourcepacks\coralrise";
+        public const string DefaultOutputDir = @"D:\UserData\Saved Games\MultiMC\instances\Minecraft Dungeons Development\.minecraft\resourcepacks\DungeonsCoralRise";
 
         static void Main(string[] args)
         {

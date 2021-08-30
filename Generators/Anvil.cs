@@ -10,35 +10,31 @@ using System.Threading.Tasks;
 
 namespace MCDTexturePackConverter.Generators
 {
-    public static class TreeBlock
+    public static class Anvil
     {
         public static void Generate(string javaName, string modelName, DungeonsRP_Blocks.Definition definition, Logic_BlockMapData conversionDataList)
         {
-            string statePath = Assembler.GetTemplatePath("tree", "log_blockstate.json");
+            string statePath = Assembler.GetTemplatePath("anvil", "anvil_blockstate.json");
             string json = File.ReadAllText(statePath);
             string edited_json = json.Replace("{!}", modelName);
             JavaRP_BlockState state = JsonConvert.DeserializeObject<JavaRP_BlockState>(edited_json);
 
-            string end = Assembler.GetBlockTexture(definition.Textures.Up, conversionDataList.DungeonsData);
+            string up = Assembler.GetBlockTexture(definition.Textures.Up, conversionDataList.DungeonsData);
+            string down = Assembler.GetBlockTexture(definition.Textures.Down, conversionDataList.DungeonsData);
             string side = Assembler.GetBlockTexture(definition.Textures.Side, conversionDataList.DungeonsData);
 
-            string modelPath = Assembler.GetTemplatePath("tree", "log_model.json");
-            string json2 = File.ReadAllText(modelPath);
-            string edited_json2 = json2.Replace("{!}", side).Replace("{!2}", end);
-            JavaRP_BlockModel model = JsonConvert.DeserializeObject<JavaRP_BlockModel>(edited_json2);
-
-            string modelPath2 = Assembler.GetTemplatePath("tree", "log_horizontal_model.json");
-            string json3 = File.ReadAllText(modelPath2);
-            string edited_json3 = json3.Replace("{!}", side).Replace("{!2}", end);
-            JavaRP_BlockModel model2 = JsonConvert.DeserializeObject<JavaRP_BlockModel>(edited_json3);
+            CreateModel(modelName, Assembler.GetTemplatePath("anvil", "anvil_model.json"), "", down, up);
 
             foreach (var entry in state.variants) Assembler.AddStateToBlockStates(Assembler.GetBlockName(javaName), entry.Key, entry.Value);
             foreach (var entry in state.multipart) Assembler.AddMultipartToBlockStates(Assembler.GetBlockName(javaName), entry);
+        }
 
-
-
-            Assembler.AddBlockModel(modelName, model);
-            Assembler.AddBlockModel(modelName + "_horizontal", model2);
+        private static void CreateModel(string modelName, string modelPath, string extension, string texture1, string texture2)
+        {
+            string json2 = File.ReadAllText(modelPath);
+            string edited_json2 = json2.Replace("{!1}", texture1).Replace("{!2}", texture2);
+            var result = JsonConvert.DeserializeObject<JavaRP_BlockModel>(edited_json2);
+            Assembler.AddBlockModel(modelName + extension, result);
         }
     }
 }

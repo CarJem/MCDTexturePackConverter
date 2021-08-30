@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "layers=1": {
+      "model": "minecraft:block/{!}_height2"
+    },
+    "layers=2": {
+      "model": "minecraft:block/{!}_height4"
+    },
+    "layers=3": {
+      "model": "minecraft:block/{!}_height6"
+    },
+    "layers=4": {
+      "model": "minecraft:block/{!}_height8"
+    },
+    "layers=5": {
+      "model": "minecraft:block/{!}_height10"
+    },
+    "layers=6": {
+      "model": "minecraft:block/{!}_height12"
+    },
+    "layers=7": {
+      "model": "minecraft:block/{!}_height14"
+    },
+    "layers=8": {
+      "model": "minecraft:block/{!}_block"
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "variants": {
+    "facing=east,in_wall=false,open=false": {
+      "uvlock": true,
+      "y": 270,
+      "model": "minecraft:block/{!}"
+    },
+    "facing=east,in_wall=false,open=true": {
+      "uvlock": true,
+      "y": 270,
+      "model": "minecraft:block/{!}_open"
+    },
+    "facing=east,in_wall=true,open=false": {
+      "uvlock": true,
+      "y": 270,
+      "model": "minecraft:block/{!}_wall"
+    },
+    "facing=east,in_wall=true,open=true": {
+      "uvlock": true,
+      "y": 270,
+      "model": "minecraft:block/{!}_wall_open"
+    },
+    "facing=north,in_wall=false,open=false": {
+      "uvlock": true,
+      "y": 180,
+      "model": "minecraft:block/{!}"
+    },
+    "facing=north,in_wall=false,open=true": {
+      "uvlock": true,
+      "y": 180,
+      "model": "minecraft:block/{!}_open"
+    },
+    "facing=north,in_wall=true,open=false": {
+      "uvlock": true,
+      "y": 180,
+      "model": "minecraft:block/{!}_wall"
+    },
+    "facing=north,in_wall=true,open=true": {
+      "uvlock": true,
+      "y": 180,
+      "model": "minecraft:block/{!}_wall_open"
+    },
+    "facing=south,in_wall=false,open=false": {
+      "uvlock": true,
+      "model": "minecraft:block/{!}"
+    },
+    "facing=south,in_wall=false,open=true": {
+      "uvlock": true,
+      "model": "minecraft:block/{!}_open"
+    },
+    "facing=south,in_wall=true,open=false": {
+      "uvlock": true,
+      "model": "minecraft:block/{!}_wall"
+    },
+    "facing=south,in_wall=true,open=true": {
+      "uvlock": true,
+      "model": "minecraft:block/{!}_wall_open"
+    },
+    "facing=west,in_wall=false,open=false": {
+      "uvlock": true,
+      "y": 90,
+      "model": "minecraft:block/{!}"
+    },
+    "facing=west,in_wall=false,open=true": {
+      "uvlock": true,
+      "y": 90,
+      "model": "minecraft:block/{!}_open"
+    },
+    "facing=west,in_wall=true,open=false": {
+      "uvlock": true,
+      "y": 90,
+      "model": "minecraft:block/{!}_wall"
+    },
+    "facing=west,in_wall=true,open=true": {
+      "uvlock": true,
+      "y": 90,
+      "model": "minecraft:block/{!}_wall_open"
+    }
+  }
+}

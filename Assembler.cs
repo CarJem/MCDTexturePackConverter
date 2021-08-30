@@ -148,17 +148,25 @@ namespace MCDTexturePackConverter
             foreach (var entry in BlockModels)
             {
                 string filePath = Path.Combine(ModelsFolder, entry.Key + ".json");
-                File.WriteAllText(filePath, JsonConvert.SerializeObject(entry.Value));
+                File.WriteAllText(filePath, JsonConvert.SerializeObject(entry.Value, Formatting.Indented, GetSettings()));
             }
 
             Directory.CreateDirectory(StatesFolder);
             foreach (var entry in BlockStates)
             {
                 string filePath = Path.Combine(StatesFolder, entry.Key + ".json");
-                File.WriteAllText(filePath, JsonConvert.SerializeObject(entry.Value));
+                File.WriteAllText(filePath, JsonConvert.SerializeObject(entry.Value, Formatting.Indented, GetSettings()));
             }
 
             ApplyFixes(outDir, ModelsFolder, StatesFolder);
+
+            JsonSerializerSettings GetSettings()
+            {
+                return new JsonSerializerSettings()
+                {
+                    NullValueHandling = NullValueHandling.Ignore
+                };
+            }
         }
         public static void ApplyFixes(DirectoryInfo outDir, string ModelsFolder, string StatesFolder)
         {

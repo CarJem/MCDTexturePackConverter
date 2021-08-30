@@ -1,0 +1,172 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "up": "false",
+        "north": "false",
+        "west": "false",
+        "south": "false",
+        "east": "false"
+      },
+      "apply": [
+        {
+          "model": "minecraft:block/{!}_floor0"
+        },
+        {
+          "model": "minecraft:block/{!}_floor1"
+        }
+      ]
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "north": "true"
+          },
+          {
+            "up": "false",
+            "north": "false",
+            "west": "false",
+            "south": "false",
+            "east": "false"
+          }
+        ]
+      },
+      "apply": [
+        {
+          "model": "minecraft:block/{!}_side0"
+        },
+        {
+          "model": "minecraft:block/{!}_side1"
+        },
+        {
+          "model": "minecraft:block/{!}_side_alt0"
+        },
+        {
+          "model": "minecraft:block/{!}_side_alt1"
+        }
+      ]
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "east": "true"
+          },
+          {
+            "up": "false",
+            "north": "false",
+            "west": "false",
+            "south": "false",
+            "east": "false"
+          }
+        ]
+      },
+      "apply": [
+        {
+          "model": "minecraft:block/{!}_side0",
+          "y": 90
+        },
+        {
+          "model": "minecraft:block/{!}_side1",
+          "y": 90
+        },
+        {
+          "model": "minecraft:block/{!}_side_alt0",
+          "y": 90
+        },
+        {
+          "model": "minecraft:block/{!}_side_alt1",
+          "y": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "south": "true"
+          },
+          {
+            "up": "false",
+            "north": "false",
+            "west": "false",
+            "south": "false",
+            "east": "false"
+          }
+        ]
+      },
+      "apply": [
+        {
+          "model": "minecraft:block/{!}_side0",
+          "y": 180
+        },
+        {
+          "model": "minecraft:block/{!}_side1",
+          "y": 180
+        },
+        {
+          "model": "minecraft:block/{!}_side_alt0",
+          "y": 180
+        },
+        {
+          "model": "minecraft:block/{!}_side_alt1",
+          "y": 180
+        }
+      ]
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "west": "true"
+          },
+          {
+            "up": "false",
+            "north": "false",
+            "west": "false",
+            "south": "false",
+            "east": "false"
+          }
+        ]
+      },
+      "apply": [
+        {
+          "model": "minecraft:block/{!}_side0",
+          "y": 270
+        },
+        {
+          "model": "minecraft:block/{!}_side1",
+          "y": 270
+        },
+        {
+          "model": "minecraft:block/{!}_side_alt0",
+          "y": 270
+        },
+        {
+          "model": "minecraft:block/{!}_side_alt1",
+          "y": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "up": "true"
+      },
+      "apply": [
+        {
+          "model": "minecraft:block/{!}_up0"
+        },
+        {
+          "model": "minecraft:block/{!}_up1"
+        },
+        {
+          "model": "minecraft:block/{!}_up_alt0"
+        },
+        {
+          "model": "minecraft:block/{!}_up_alt1"
+        }
+      ]
+    }
+  ]
+}

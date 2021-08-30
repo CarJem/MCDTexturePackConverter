@@ -18,7 +18,9 @@ namespace MCDTexturePackConverter.Generators
             { "farmland", "converter_short" },
             { "iron_trapdoor", "converter_trapdoor" },
             { "trapdoor", "converter_trapdoor" },
-            { "carpet", "converter_carpet" }
+            { "carpet", "converter_carpet" },
+            { "snow_layer", "converter_snow_layer" },
+            { "quartz_block", "" }
         };
 
         //CONVERTING:
@@ -58,7 +60,7 @@ namespace MCDTexturePackConverter.Generators
                     Fence.Generate(javaName, modelName, definition, mappings);
                     break;
                 case "fence_gate":
-                    //TODO: Implement
+                    FenceGate.Generate(javaName, modelName, definition, mappings);
                     break;
                 case "tree":
                     TreeBlock.Generate(javaName, modelName, definition, mappings);
@@ -67,43 +69,64 @@ namespace MCDTexturePackConverter.Generators
                     LeavesBlock.Generate(javaName, modelName, definition, mappings);
                     break;
                 case "double_plant_poly":
-                    CrossBlock.GeneratePlant(javaName, modelName, definition, mappings);
+                    DoublePlantPoly.Generate(javaName, modelName, definition, mappings);
                     break;
                 case "cross_texture":
                     CrossBlock.Generate(javaName, modelName, definition, mappings);
                     break;
                 case "converter_carpet":
-                    //TODO: Implement
+                    Carpet.Generate(javaName, modelName, definition, mappings);
                     break;
                 case "converter_trapdoor":
-                    //TODO: Implement
+                    Trapdoor.Generate(javaName, modelName, definition, mappings);
                     break;
                 case "converter_short":
                     Farmland.Generate(javaName, modelName, definition, mappings);
                     break;
                 case "ladder":
-                    //TODO: Implement
+                    Ladder.Generate(javaName, modelName, definition, mappings);
                     break;
                 case "rail":
-                    //TODO: Implement
+                    Rail.Generate(javaName, modelName, definition, mappings);
                     break;
                 case "door":
-                    //TODO: Implement
+                    Door.Generate(javaName, modelName, definition, mappings);
                     break;
                 case "rows":
-                    //TODO: Implement
+                    Rows.Generate(javaName, modelName, definition, mappings);
                     break;
                 case "red_dust":
-                    //TODO: Implement
+                    RedDust.Generate(javaName, modelName, definition, mappings);
                     break;
                 case "chest":
-                    //TODO: Implement
+                    GeneralBlock.Generate(javaName, modelName, definition, mappings, true);
                     break;
                 case "invisible":
                     AirBlock.Generate(javaName, modelName, definition, mappings);
                     break;
                 case "fire":
-                    //TODO: Implement
+                    Fire.Generate(javaName, modelName, definition, mappings);
+                    break;
+                case "anvil":
+                    Anvil.Generate(javaName, modelName, definition, mappings);
+                    break;
+                case "iron_fence":
+                    IronFence.Generate(javaName, modelName, definition, mappings);
+                    break;
+                case "cross_texture_poly":
+                    CrossBlock.Generate(javaName, modelName, definition, mappings);
+                    break;
+                case "tallgrass":
+                    CrossBlock.Generate(javaName, modelName, definition, mappings);
+                    break;
+                case "slime_block":
+                    GeneralBlock.Generate(javaName, modelName, definition, mappings, true);
+                    break;
+                case "converter_snow_layer":
+                    SnowLayer.Generate(javaName, modelName, definition, mappings);
+                    break;
+                case "cactus":
+                    Cactus.Generate(javaName, modelName, definition, mappings);
                     break;
                 case "void":
                     //TODO: Implement
@@ -112,9 +135,6 @@ namespace MCDTexturePackConverter.Generators
                     //TODO: Implement
                     break;
                 case "comparator":
-                    //TODO: Implement
-                    break;
-                case "anvil":
                     //TODO: Implement
                     break;
                 case "tripwire":
@@ -144,19 +164,10 @@ namespace MCDTexturePackConverter.Generators
                 case "stem":
                     //TODO: Implement
                     break;
-                case "iron_fence":
-                    //TODO: Implement
-                    break;
                 case "repeater":
                     //TODO: Implement
                     break;
-                case "cactus":
-                    //TODO: Implement
-                    break;
-                case "piston":
-                    //TODO: Implement
-                    break;
-                case "tallgrass":
+                case "piston":  
                     //TODO: Implement
                     break;
                 case "bed":

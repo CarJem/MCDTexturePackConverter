@@ -1,0 +1,21 @@
+﻿Exclusive Blocks:
+
+119 Simple Blocks (element_0 - element_118)
+8 Simple Blocks (with possible Metadata)
+    - reserved6
+    - movingblock
+    - info_update2
+    - info_update
+    - netherreactor
+    - glowingobsidian
+    - stonecutter
+    - stone_gradient
+16 Exclusive Custom Blocks (custom_0 - custom_15)
+2 Potential Dummies
+    - frame
+    - invisiblebedrock
+2 Slab Blocks
+    - double_stonefloor_slab
+    - stonefloor_slab
+
+
