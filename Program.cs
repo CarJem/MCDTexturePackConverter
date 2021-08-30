@@ -22,8 +22,11 @@ namespace MCDTexturePackConverter
         //private const string DefaultInputDir = @"D:\UserData\Modding Workspaces\MC Dungeons Modding\Game Dumps\Current\Dungeons\Content\data\resourcepacks\squidcoast";
         //public const string DefaultOutputDir = @"D:\UserData\Saved Games\MultiMC\instances\Minecraft Dungeons Development\.minecraft\resourcepacks\DungeonsConvertedPack";
 
-        private const string DefaultInputDir = @"D:\UserData\Modding Workspaces\MC Dungeons Modding\Game Dumps\Current\Dungeons\Content\data\resourcepacks\coralrise";
-        public const string DefaultOutputDir = @"D:\UserData\Saved Games\MultiMC\instances\Minecraft Dungeons Development\.minecraft\resourcepacks\DungeonsCoralRise";
+        //private const string DefaultInputDir = @"D:\UserData\Modding Workspaces\MC Dungeons Modding\Game Dumps\Current\Dungeons\Content\data\resourcepacks\coralrise";
+        //public const string DefaultOutputDir = @"D:\UserData\Saved Games\MultiMC\instances\Minecraft Dungeons Development\.minecraft\resourcepacks\DungeonsCoralRise";
+
+        private const string DefaultInputDir = "";
+        public const string DefaultOutputDir = "";
 
         static void Main(string[] args)
         {
@@ -33,10 +36,19 @@ namespace MCDTexturePackConverter
             Console.WriteLine("                 Version {0}                      ", VERSION);
             Console.WriteLine("--------------------------------------------------\r\n");
 
+            string input_start_directory = DefaultInputDir;
+            string output_start_directory = DefaultOutputDir;
+
+            if (args.Length >= 2)
+            {
+                input_start_directory = args[0];
+                output_start_directory = args[1];
+            }
+
             Assembler.Init();
-            string path = GetInputPath(DefaultInputDir);
+            string path = GetInputPath(input_start_directory);
             if (path == null) return;
-            string outpath = GetOutputPath(DefaultOutputDir);
+            string outpath = GetOutputPath(output_start_directory);
             if (outpath == null) return;
             Convert(path, outpath, true);
         }
