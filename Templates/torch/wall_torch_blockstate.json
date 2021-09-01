@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "minecraft:block/{!}"
+    },
+    "facing=north": {
+      "model": "minecraft:block/{!}",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "minecraft:block/{!}",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "minecraft:block/{!}",
+      "y": 180
+    }
+  }
+}

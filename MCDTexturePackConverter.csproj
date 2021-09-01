@@ -34,10 +34,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="BlockPairs.json">
+    <None Update="Config\BlockPairs.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="BlockMap.json">
+    <None Update="Config\BlockMap.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Config\IntentionalBlockPairs.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Templates\anvil\anvil_blockstate.json">
@@ -46,10 +49,52 @@
     <None Update="Templates\anvil\anvil_model.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Templates\brewing_stand\brewing_stand_blockstate.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\brewing_stand\brewing_stand_bottle0_model.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\brewing_stand\brewing_stand_bottle1_model.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\brewing_stand\brewing_stand_bottle2_model.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\brewing_stand\brewing_stand_empty0_model.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\brewing_stand\brewing_stand_empty1_model.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\brewing_stand\brewing_stand_empty2_model.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\brewing_stand\brewing_stand_model.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Templates\cactus\cactus_blockstate.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Templates\cactus\cactus_model.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\cauldron\cauldron_model.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\cocoa\cocoa_blockstate.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\cocoa\cocoa_stage0_model.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\cocoa\cocoa_stage1_model.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\cocoa\cocoa_stage2_model.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\dirt_path\dirt_path_model.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Templates\door\door_blockstate.json">
@@ -241,6 +286,21 @@
     <None Update="Templates\leaves\leaves_model.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Templates\lever\lever_blockstate.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\lever\lever_model.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\lever\lever_on_model.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\lilypad\lilypad_blockstate.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\lilypad\lilypad_model.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Templates\rail\rail_blockstate.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -316,6 +376,48 @@
     <None Update="Templates\snow_layer\snow_layer_height8_model.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Templates\stem\stem_attached_blockstate.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\stem\stem_blockstate.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\stem\stem_stage0_model.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\stem\stem_stage1_model.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\stem\stem_stage2_model.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\stem\stem_stage3_model.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\stem\stem_stage4_model.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\stem\stem_stage5_model.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\stem\stem_stage6_model.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\stem\stem_stage7_model.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\torch\torch_blockstate.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\torch\wall_torch_blockstate.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\torch\wall_torch_model.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\torch\torch_model.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Templates\trapdoor\trapdoor_blockstate.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -361,6 +463,12 @@
     <None Update="Templates\stairs\stairs_blockstate.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Templates\vine\vine_blockstate.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\vine\vine_model.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Templates\wall\wall_blockstate.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -376,7 +484,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Templates\fix\NewFolder\" />
+    <Folder Include="Templates\hopper\" />
+    <Folder Include="Templates\bed\" />
+    <Folder Include="Templates\comparator\" />
+    <Folder Include="Templates\tripwire\" />
+    <Folder Include="Templates\tripwire_hook\" />
+    <Folder Include="Templates\portal_frame\" />
+    <Folder Include="Templates\repeater\" />
+    <Folder Include="Templates\piston\" />
+    <Folder Include="Templates\water\" />
   </ItemGroup>
 
 </Project>

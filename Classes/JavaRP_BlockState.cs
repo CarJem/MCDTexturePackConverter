@@ -10,7 +10,7 @@ namespace MCDTexturePackConverter.Classes
 {
     public class JavaRP_BlockState
     {
-        public Dictionary<string, JObject> variants { get; set; } = new Dictionary<string, JObject>();
+        public Dictionary<string, JContainer> variants { get; set; } = new Dictionary<string, JContainer>();
         public List<JObject> multipart { get; set; } = new List<JObject>();
     }
 }

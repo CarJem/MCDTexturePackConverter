@@ -17,16 +17,18 @@ namespace MCDTexturePackConverter
     class Program
     {
 
-        public const string VERSION = "0.1";
+        public const string VERSION = "0.2";
 
         //private const string DefaultInputDir = @"D:\UserData\Modding Workspaces\MC Dungeons Modding\Game Dumps\Current\Dungeons\Content\data\resourcepacks\squidcoast";
-        //public const string DefaultOutputDir = @"D:\UserData\Saved Games\MultiMC\instances\Minecraft Dungeons Development\.minecraft\resourcepacks\DungeonsConvertedPack";
+        //private const string DefaultOutputDir = @"D:\UserData\Saved Games\MultiMC\instances\Minecraft Dungeons Development\.minecraft\resourcepacks\DungeonsSquidCoast";
 
         //private const string DefaultInputDir = @"D:\UserData\Modding Workspaces\MC Dungeons Modding\Game Dumps\Current\Dungeons\Content\data\resourcepacks\coralrise";
-        //public const string DefaultOutputDir = @"D:\UserData\Saved Games\MultiMC\instances\Minecraft Dungeons Development\.minecraft\resourcepacks\DungeonsCoralRise";
+        //private const string DefaultOutputDir = @"D:\UserData\Saved Games\MultiMC\instances\Minecraft Dungeons Development\.minecraft\resourcepacks\DungeonsCoralRise";
 
         private const string DefaultInputDir = "";
-        public const string DefaultOutputDir = "";
+        private const string DefaultOutputDir = "";
+
+        private const bool DeveloperBypass = false;
 
         static void Main(string[] args)
         {
@@ -36,20 +38,28 @@ namespace MCDTexturePackConverter
             Console.WriteLine("                 Version {0}                      ", VERSION);
             Console.WriteLine("--------------------------------------------------\r\n");
 
-            string input_start_directory = DefaultInputDir;
-            string output_start_directory = DefaultOutputDir;
+            string path;
+            string outpath;
 
             if (args.Length >= 2)
             {
-                input_start_directory = args[0];
-                output_start_directory = args[1];
+                path = args[0];
+                outpath = args[1];
+            }
+            else if (DeveloperBypass)
+            {
+                path = DefaultInputDir;
+                outpath = DefaultOutputDir;
+            }
+            else
+            {
+                path = GetInputPath(DefaultInputDir);
+                if (path == null) return;
+                outpath = GetOutputPath(DefaultOutputDir);
+                if (outpath == null) return;
             }
 
             Assembler.Init();
-            string path = GetInputPath(input_start_directory);
-            if (path == null) return;
-            string outpath = GetOutputPath(output_start_directory);
-            if (outpath == null) return;
             Convert(path, outpath, true);
         }
 
@@ -175,6 +185,13 @@ namespace MCDTexturePackConverter
             {
                 string filePath = newPath.Replace(sourcePath, targetPath).Replace(Path.GetFileName(newPath), Path.GetFileName(newPath).ToLower());
 
+                //Fix For Leaves
+                if (Path.GetFileNameWithoutExtension(filePath).EndsWith("_opaque_outer"))
+                {
+                    filePath = filePath.ReplaceLastOccurrence("_opaque_outer", "_outer");
+                }
+
+                //Fix for TGA otherwise Copy
                 if (Path.GetExtension(newPath) == ".tga")
                 {
                     using (var image = new MagickImage(newPath))

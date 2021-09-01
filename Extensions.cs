@@ -20,6 +20,17 @@ namespace MCDTexturePackConverter
             return item.Remove(item.IndexOf(toRemove), toRemove.Length);
         }
 
+        public static string ReplaceLastOccurrence(this string source, string Find, string Replace)
+        {
+            int place = source.LastIndexOf(Find);
+
+            if (place == -1)
+                return source;
+
+            string result = source.Remove(place, Find.Length).Insert(place, Replace);
+            return result;
+        }
+
         public static void CopyFilesRecursively(string sourcePath, string targetPath)
         {
             //Now Create all of the directories

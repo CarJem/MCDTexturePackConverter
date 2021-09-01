@@ -31,21 +31,25 @@ namespace MCDTexturePackConverter
         public static Logic_BlockPairs BlockNames { get; private set; } = new Logic_BlockPairs();
         public static Dictionary<string, JavaRP_BlockModel> BlockModels { get; set; } = new Dictionary<string, JavaRP_BlockModel>();
         public static Dictionary<string, JavaRP_BlockState> BlockStates { get; set; } = new Dictionary<string, JavaRP_BlockState>();
+        public static Logic_IntentionalBlockPairs IntentionalPairs { get; set; } = new Logic_IntentionalBlockPairs();
 
         #region Common Functions
 
         public static void Init()
         {
-            string mapPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "BlockMap.json");
-            string namesPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "BlockPairs.json");
+            string mapPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Config", "BlockMap.json");
+            string namesPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Config", "BlockPairs.json");
+            string intentionalPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Config", "IntentionalBlockPairs.json");
+
 
             BlockMap = JsonConvert.DeserializeObject<Logic_BlockMap>(File.ReadAllText(mapPath));
             BlockNames = JsonConvert.DeserializeObject<Logic_BlockPairs>(File.ReadAllText(namesPath));
+            IntentionalPairs = JsonConvert.DeserializeObject<Logic_IntentionalBlockPairs>(File.ReadAllText(intentionalPath));
+
         }
-        public static void AddStateToBlockStates(string block, string key, JObject value)
+        public static void AddStateToBlockStates(string block, string key, JContainer value)
         {
             if (!BlockStates.ContainsKey(block)) BlockStates.Add(block, new JavaRP_BlockState());
-
             if (!BlockStates[block].variants.ContainsKey(key))
             {
                 BlockStates[block].variants.Add(key, value);
@@ -88,26 +92,25 @@ namespace MCDTexturePackConverter
 
         private static bool Evaluation(string javaName, List<Logic_BlockMapData> blocks)
         {
-            List<string> coveredDungeonsNames = new List<string>();
-            List<int> coveredDungeonsIds = new List<int>();
+            List<Tuple<int, string>> coveredDungeonsIds = new List<Tuple<int, string>>();
             foreach (var entry in blocks)
             {
                 int dungeonsID = entry.DungeonsID;
                 string dungeonsName = BlockNames.GetName(dungeonsID);
-                if (!coveredDungeonsIds.Contains(dungeonsID))
-                {
-                    coveredDungeonsIds.Add(dungeonsID);
-                    coveredDungeonsNames.Add(dungeonsName);
-                }
+                var tuple = new Tuple<int, string>(dungeonsID, dungeonsName);
+                if (!coveredDungeonsIds.Contains(tuple)) coveredDungeonsIds.Add(tuple);
             }
 
             if (coveredDungeonsIds.Count >= 2)
             {
-                Debug.WriteLine("{0} contains multiple blocks: \r\n{1}\r\n", javaName, String.Join("\r\n", coveredDungeonsNames.ToArray()));
+                coveredDungeonsIds.RemoveAll(x => IntentionalPairs.pairs.Contains(x.Item2));
+                if (coveredDungeonsIds.Count >= 1)
+                {
+                    Debug.WriteLine("{0} contains multiple blocks: \r\n{1}\r\n", javaName, String.Join("\r\n", coveredDungeonsIds.ConvertAll(x => x.Item2).ToArray()));
+                    return true;
+                }
             }
-
-            if (coveredDungeonsIds.Count >= 3) return true;
-            else return false;
+            return false;
         }
         public static void AssembleBlock(string key, Logic_IBlockMapValue value)
         {
@@ -115,26 +118,17 @@ namespace MCDTexturePackConverter
             string javaName = key;
             //Get Dungeons Name for the First Block (all of other blocks should be the same data ID)
             bool multiple = Evaluation(javaName, blocks);
-            if (multiple)
+
+            if (multiple) foreach (var block in blocks) Loop(block);
+            else Loop(blocks.FirstOrDefault());
+
+            void Loop(Logic_BlockMapData block)
             {
-                foreach (var block in blocks)
-                {
-                    string dungeonsName = BlockNames.GetName(block.DungeonsID);
-                    if (Paths.Blocks.blocks.ContainsKey(dungeonsName))
-                    {
-                        var definition = Paths.Blocks.blocks[dungeonsName];
-                        Generators.Generator.Generate(javaName, dungeonsName, definition, block);
-                    }
-                    else Debug.WriteLine("Missing " + dungeonsName);
-                }
-            }
-            else
-            {
-                string dungeonsName = BlockNames.GetName(blocks.FirstOrDefault().DungeonsID);
+                string dungeonsName = BlockNames.GetName(block.DungeonsID);
                 if (Paths.Blocks.blocks.ContainsKey(dungeonsName))
                 {
                     var definition = Paths.Blocks.blocks[dungeonsName];
-                    Generators.Generator.Generate(javaName, dungeonsName, definition, blocks.FirstOrDefault());
+                    Generators.Generator.Generate(javaName, dungeonsName, definition, block);
                 }
                 else Debug.WriteLine("Missing " + dungeonsName);
             }
@@ -147,6 +141,7 @@ namespace MCDTexturePackConverter
             Directory.CreateDirectory(ModelsFolder);
             foreach (var entry in BlockModels)
             {
+                if (entry.Value.elements.Count == 0) entry.Value.elements = null;
                 string filePath = Path.Combine(ModelsFolder, entry.Key + ".json");
                 File.WriteAllText(filePath, JsonConvert.SerializeObject(entry.Value, Formatting.Indented, GetSettings()));
             }
@@ -154,6 +149,7 @@ namespace MCDTexturePackConverter
             Directory.CreateDirectory(StatesFolder);
             foreach (var entry in BlockStates)
             {
+                if (entry.Value.multipart.Count == 0) entry.Value.multipart = null;
                 string filePath = Path.Combine(StatesFolder, entry.Key + ".json");
                 File.WriteAllText(filePath, JsonConvert.SerializeObject(entry.Value, Formatting.Indented, GetSettings()));
             }
@@ -170,16 +166,17 @@ namespace MCDTexturePackConverter
         }
         public static void ApplyFixes(DirectoryInfo outDir, string ModelsFolder, string StatesFolder)
         {
-            PatchBlockstateFix("farmland_blockstate", "farmland");
+            //No Longer Needed: New System Implemented
 
-            PatchModelFix("farmland_model", "farmland");
-            PatchModelFix("farmland_moist_model", "farmland_moist");
-            PatchModelFix("farmland1_model", "farmland1");
-            PatchModelFix("farmland2_model", "farmland2");
-            PatchModelFix("farmland3_model", "farmland3");
-            PatchModelFix("farmland4_model", "farmland4");
-            PatchModelFix("farmland5_model", "farmland5");
-            PatchModelFix("farmland6_model", "farmland6");
+            //PatchBlockstateFix("farmland_blockstate", "farmland");
+            //PatchModelFix("farmland_model", "farmland");
+            //PatchModelFix("farmland_moist_model", "farmland_moist");
+            //PatchModelFix("farmland1_model", "farmland1");
+            //PatchModelFix("farmland2_model", "farmland2");
+            //PatchModelFix("farmland3_model", "farmland3");
+            //PatchModelFix("farmland4_model", "farmland4");
+            //PatchModelFix("farmland5_model", "farmland5");
+            //PatchModelFix("farmland6_model", "farmland6");
 
             PatchModelFix("leaves_model", "leaves");
 

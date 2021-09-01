@@ -1,0 +1,57 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "minecraft:block/{!}"
+      }
+    },
+    {
+      "when": {
+        "has_bottle_0": "true"
+      },
+      "apply": {
+        "model": "minecraft:block/{!}_bottle0"
+      }
+    },
+    {
+      "when": {
+        "has_bottle_1": "true"
+      },
+      "apply": {
+        "model": "minecraft:block/{!}_bottle1"
+      }
+    },
+    {
+      "when": {
+        "has_bottle_2": "true"
+      },
+      "apply": {
+        "model": "minecraft:block/{!}_bottle2"
+      }
+    },
+    {
+      "when": {
+        "has_bottle_0": "false"
+      },
+      "apply": {
+        "model": "minecraft:block/{!}_empty0"
+      }
+    },
+    {
+      "when": {
+        "has_bottle_1": "false"
+      },
+      "apply": {
+        "model": "minecraft:block/{!}_empty1"
+      }
+    },
+    {
+      "when": {
+        "has_bottle_2": "false"
+      },
+      "apply": {
+        "model": "minecraft:block/{!}_empty2"
+      }
+    }
+  ]
+}

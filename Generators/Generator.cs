@@ -9,7 +9,7 @@ namespace MCDTexturePackConverter.Generators
 {
     public static class Generator
     {
-        public static Dictionary<string, string> Redirects { get; set; } = new Dictionary<string, string>()
+        public static Dictionary<string, string> DungeonsRedirects { get; set; } = new Dictionary<string, string>()
         {
             { "double_stone_slab", "block_half" },
             { "double_wooden_slab", "block_half" },
@@ -20,7 +20,7 @@ namespace MCDTexturePackConverter.Generators
             { "trapdoor", "converter_trapdoor" },
             { "carpet", "converter_carpet" },
             { "snow_layer", "converter_snow_layer" },
-            { "quartz_block", "" }
+            { "quartz_block", "converter_needs_fix_log" }
         };
 
         //CONVERTING:
@@ -33,7 +33,7 @@ namespace MCDTexturePackConverter.Generators
         {
             string blockShape = definition.Blockshape;
 
-            if (Redirects.ContainsKey(dungeonsName)) blockShape = Redirects[dungeonsName];
+            if (DungeonsRedirects.ContainsKey(dungeonsName)) blockShape = DungeonsRedirects[dungeonsName];
 
             string shortenedName = javaName.Remove("minecraft:");
             string modelName = shortenedName;
@@ -61,6 +61,10 @@ namespace MCDTexturePackConverter.Generators
                     break;
                 case "fence_gate":
                     FenceGate.Generate(javaName, modelName, definition, mappings);
+                    break;
+                case "converter_needs_fix_log":
+                    if (javaName == "minecraft:quartz_pillar") TreeBlock.Generate(javaName, modelName, definition, mappings);
+                    else GeneralBlock.Generate(javaName, modelName, definition, mappings, true);
                     break;
                 case "tree":
                     TreeBlock.Generate(javaName, modelName, definition, mappings);
@@ -129,46 +133,28 @@ namespace MCDTexturePackConverter.Generators
                     Cactus.Generate(javaName, modelName, definition, mappings);
                     break;
                 case "void":
-                    //TODO: Implement
-                    break;
-                case "hopper":
-                    //TODO: Implement
-                    break;
-                case "comparator":
-                    //TODO: Implement
-                    break;
-                case "tripwire":
-                    //TODO: Implement
-                    break;
-                case "tripwire_hook":
-                    //TODO: Implement
-                    break;
-                case "portal_frame":
-                    //TODO: Implement
-                    break;
-                case "cocoa":
-                    //TODO: Implement
+                    AirBlock.Generate(javaName, modelName, definition, mappings);
                     break;
                 case "cauldron":
-                    //TODO: Implement
+                    Cauldron.Generate(javaName, modelName, definition, mappings);
                     break;
                 case "brewing_stand":
-                    //TODO: Implement
+                    BrewingStand.Generate(javaName, modelName, definition, mappings);
                     break;
                 case "lilypad":
-                    //TODO: Implement
+                    Lilypad.Generate(javaName, modelName, definition, mappings);
                     break;
                 case "vine":
-                    //TODO: Implement
+                    Vine.Generate(javaName, modelName, definition, mappings);
                     break;
-                case "stem":
-                    //TODO: Implement
+                case "lever":
+                    Lever.Generate(javaName, modelName, definition, mappings);
                     break;
-                case "repeater":
-                    //TODO: Implement
+                case "torch":
+                    Torch.Generate(javaName, modelName, definition, mappings);
                     break;
-                case "piston":  
-                    //TODO: Implement
+                case "cocoa":
+                    Cocoa.Generate(javaName, modelName, definition, mappings);
                     break;
                 case "bed":
                     //TODO: Implement
@@ -176,11 +162,30 @@ namespace MCDTexturePackConverter.Generators
                 case "water":
                     //TODO: Implement
                     break;
-                case "lever":
-                    //TODO: Implement
+                case "stem":
+                    //TODO: Implement (Not a Priority)
+                    //Stem.Generate(javaName, modelName, definition, mappings);
                     break;
-                case "torch":
-                    //TODO: Implement
+                case "hopper":
+                    //TODO: Implement (not a priority)
+                    break;
+                case "comparator":
+                    //TODO: Implement (not a priority)
+                    break;
+                case "tripwire":
+                    //TODO: Implement (not a priority)
+                    break;
+                case "tripwire_hook":
+                    //TODO: Implement (not a priority)
+                    break;
+                case "portal_frame":
+                    //TODO: Implement (not a priority)
+                    break;
+                case "repeater":
+                    //TODO: Implement (not a priority)
+                    break;
+                case "piston":
+                    //TODO: Implement (not a priority)
                     break;
                 default:
                     GeneralBlock.Generate(javaName, modelName, definition, mappings, true);
