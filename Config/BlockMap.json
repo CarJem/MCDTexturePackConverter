@@ -5256,6 +5256,7 @@
 		"minecraft:dirt_path": [ 198, 0 ],
 		"minecraft:grass_path": [ 198, 0 ],
 		"minecraft:dead_tube_coral_block": [ 199, 3 ],
+		"minecraft:light_blue_glazed_terracotta": [ 223, 0 ],
 		"minecraft:white_concrete": [ 224, 0 ],
 		"minecraft:orange_concrete": [ 225, 0 ],
 		"minecraft:magenta_concrete": [ 226, 0 ],
